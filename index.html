@@ -1,0 +1,466 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Tugas Mentoring 18</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+<div class="container mt-5">
+    <h1 class="text-center mb-5">Tugas Mentoring 18 - Arkatama</h1>
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#modalMakanan">Pilih Makanan</button>
+        </div>
+        <div class="col-md-4">
+            <input type="text" id="namaMakanan" class="form-control" placeholder="Nama Makanan" readonly>
+        </div>
+        <div class="col-md-4">
+            <input type="text" id="jumlahMakanan" class="form-control" placeholder="Jumlah Makanan" readonly>
+        </div>
+    </div>
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <button class="btn btn-primary" data-toggle="modal" data-target="#modalBahan">Pilih Bahan</button>
+        </div>
+        <div class="col-md-4">
+            <input type="text" id="namaBahan" class="form-control" placeholder="Nama Bahan" readonly>
+        </div>
+        <div class="col-md-4">
+            <input type="text" id="jumlahBahan" class="form-control" placeholder="Jumlah Bahan" readonly>
+        </div>
+    </div>
+    <div class="mt-4" style="float: right;">
+        <button class="btn btn-success" id="simpan">Simpan Data</button>
+    </div>
+
+    <div class="mt-4">
+        <h3>Data Tersimpan:</h3>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nama Makanan</th>
+                    <th>Nama Bahan</th>
+                    <th>Jumlah Makanan</th>
+                    <th>Jumlah Bahan</th>
+                    <th>Harga</th>
+                    <th>Detail</th>
+                </tr>
+            </thead>
+            <tbody id="dataTersimpan">
+                <!-- Data yang disimpan akan ditampilkan di sini -->
+            </tbody>
+        </table>
+    </div>
+
+    <div class="mt-4">
+        <h3>Data Produk:</h3>
+        <button class="btn btn-success tambah-produk">Tambah</button>
+        <table class="table">
+            <thead>
+                <tr>
+                    <th>Nama Produk</th>
+                    <th>Harga</th>
+                    <th>Stok</th>
+                    <th>Ingredients</th>
+                    <th>Aksi</th>
+                </tr>
+            </thead>
+            <tbody id="dataProduk">
+                <!-- Dummy Product Data -->
+                <tr>
+                    <td>Produk 1</td>
+                    <td>5000</td>
+                    <td>20</td>
+                    <td>
+                        <button class="btn btn-info view-ingredients">Lihat</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-info edit-produk">Edit</button>
+                        <button class="btn btn-danger delete-produk">Hapus</button>
+                    </td>
+                </tr>
+                <tr>
+                    <td>Produk 2</td>
+                    <td>8000</td>
+                    <td>15</td>
+                    <td>
+                        <button class="btn btn-info view-ingredients">Lihat</button>
+                    </td>
+                    <td>
+                        <button class="btn btn-info edit-produk">Edit</button>
+                        <button class="btn btn-danger delete-produk">Hapus</button>
+                    </td>
+                </tr>
+                <!-- Add more dummy data as needed -->
+            </tbody>
+        </table>
+    </div>
+</div>
+
+<div class="footer text-center">
+    <p>Muhamad Rifqi Hilmy Apriadi | FSWD</p>
+</div>
+<!-- Modal Ingredients -->
+<div class="modal fade" id="modalIngredients">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Ingredients</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <ul id="ingredientsList" class="list-group">
+                    <!-- Ingredients will be displayed here -->
+                </ul>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Modal Makanan -->
+<div class="modal fade" id="modalMakanan">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Pilih Makanan</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nama Makanan</th>
+                            <th>Jumlah</th>
+                            <th>Pilih</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Makanan 1</td>
+                            <td>10</td>
+                            <td><button class="btn btn-primary select-makanan">Pilih</button></td>
+                        </tr>
+                        <tr>
+                            <td>Makanan 2</td>
+                            <td>5</td>
+                            <td><button class="btn btn-primary select-makanan">Pilih</button></td>
+                        </tr>
+                        <tr>
+                            <td>Bahan 1</td>
+                            <td>100g</td>
+                            <td><button class="btn btn-primary select-makanan">Pilih</button></td>
+                        </tr>
+                        <tr>
+                            <td>Bahan 2</td>
+                            <td>50g</td>
+                            <td><button class="btn btn-primary select-makanan">Pilih</button></td>
+                        </tr>
+                        <!-- Tambahkan data dummy lainnya di sini -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Bahan Makanan -->
+<div class="modal fade" id="modalBahan">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Pilih Bahan Makanan</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nama Bahan</th>
+                            <th>Jumlah</th>
+                            <th>Pilih</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Makanan 1</td>
+                            <td>10</td>
+                            <td><button class="btn btn-primary select-bahan">Pilih</button></td>
+                        </tr>
+                        <tr>
+                            <td>Makanan 2</td>
+                            <td>5</td>
+                            <td><button class="btn btn-primary select-bahan">Pilih</button></td>
+                        </tr>
+                        <tr>
+                            <td>Bahan 1</td>
+                            <td>100g</td>
+                            <td><button class="btn btn-primary select-bahan">Pilih</button></td>
+                        </tr>
+                        <tr>
+                            <td>Bahan 2</td>
+                            <td>50g</td>
+                            <td><button class="btn btn-primary select-bahan">Pilih</button></td>
+                        </tr>
+                        <!-- Tambahkan data dummy lainnya di sini -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Detail -->
+<div class="modal fade" id="modalDetail">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Detail Makanan dan Bahan</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th>Nama Makanan</th>
+                            <th>Nama Bahan</th>
+                            <th>Jumlah Makanan</th>
+                            <th>Jumlah Bahan</th>
+                            <th>Harga</th>
+                        </tr>
+                    </thead>
+                    <tbody id="detailMakananBahan">
+                        <!-- Data detail akan ditampilkan di sini -->
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<!-- Modal Tambah Produk -->
+<div class="modal fade" id="modalTambahProduk">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Tambah Produk</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Add your form fields for adding a new product here -->
+                <div class="form-group">
+                    <label for="inputNamaProduk">Nama Produk:</label>
+                    <input type="text" class="form-control" id="inputNamaProduk">
+                </div>
+                <div class="form-group">
+                    <label for="inputHarga">Harga:</label>
+                    <input type="text" class="form-control" id="inputHarga">
+                </div>
+                <div class="form-group">
+                    <label for="inputStok">Stok:</label>
+                    <input type="text" class="form-control" id="inputStok">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-success" id="simpanTambah">Simpan</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Edit Produk -->
+<div class="modal fade" id="modalEditProduk">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Edit Produk</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <!-- Add your form fields for editing a product here -->
+                <div class="form-group">
+                    <label for="editNamaProduk">Nama Produk:</label>
+                    <input type="text" class="form-control" id="editNamaProduk">
+                </div>
+                <div class="form-group">
+                    <label for="editHarga">Harga:</label>
+                    <input type="text" class="form-control" id="editHarga">
+                </div>
+                <div class="form-group">
+                    <label for="editStok">Stok:</label>
+                    <input type="text" class="form-control" id="editStok">
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tutup</button>
+                <button type="button" class="btn btn-info" id="simpanEdit">Simpan Perubahan</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal Hapus Produk -->
+<div class="modal fade" id="modalHapusProduk">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Hapus Produk</h5>
+                <button type="button" class="close" data-dismiss="modal">
+                    <span>&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Apakah Anda yakin ingin menghapus produk ini?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Tidak</button>
+                <button type="button" class="btn btn-danger" id="konfirmasiHapus">Ya, Hapus</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js"></script>
+<script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js"></script>
+<script>
+    var dataTersimpan = [];
+
+    $(document).ready(function () {
+        $('.select-makanan').click(function () {
+            var row = $(this).closest('tr');
+            var namaMakanan = row.find('td:eq(0)').text();
+            var jumlahMakanan = row.find('td:eq(1)').text();
+
+            // Validasi apakah nama makanan sama dengan nama bahan yang dipilih
+            var namaBahan = $('#namaBahan').val();
+            if (namaMakanan !== namaBahan) {
+                $('#namaMakanan').val(namaMakanan);
+                $('#jumlahMakanan').val(jumlahMakanan);
+                $('#modalMakanan').modal('hide');
+            } else {
+                alert('Nama makanan tidak boleh sama dengan bahan yang dipilih.');
+            }
+        });
+
+        $('.select-bahan').click(function () {
+            var row = $(this).closest('tr');
+            var namaBahan = row.find('td:eq(0)').text();
+            var jumlahBahan = row.find('td:eq(1)').text();
+
+            // Validasi apakah nama bahan sama dengan nama makanan yang dipilih
+            var namaMakanan = $('#namaMakanan').val();
+            if (namaBahan !== namaMakanan) {
+                $('#namaBahan').val(namaBahan);
+                $('#jumlahBahan').val(jumlahBahan);
+                $('#modalBahan').modal('hide');
+            } else {
+                alert('Nama bahan tidak boleh sama dengan makanan yang dipilih.');
+            }
+        });
+
+        $('#simpan').click(function () {
+            var namaMakanan = $('#namaMakanan').val();
+            var namaBahan = $('#namaBahan').val();
+            var jumlahMakanan = $('#jumlahMakanan').val();
+            var jumlahBahan = $('#jumlahBahan').val();
+
+            if (namaMakanan && namaBahan && jumlahMakanan && jumlahBahan) {
+                var harga = (parseInt(jumlahMakanan) + parseInt(jumlahBahan)) * 1000;
+                var newRow = '<tr><td>' + namaMakanan + '</td><td>' + namaBahan + '</td><td>' + jumlahMakanan + '</td><td>' + jumlahBahan + '</td><td>' + harga + '</td><td><button class="btn btn-info detail">Detail</button></td></tr>';
+                $('#dataTersimpan').append(newRow);
+                dataTersimpan.push({ namaMakanan, namaBahan, harga });
+
+                // Reset input fields
+                $('#namaMakanan').val('');
+                $('#jumlahMakanan').val('');
+                $('#namaBahan').val('');
+                $('#jumlahBahan').val('');
+            } else {
+                alert('Harap pilih makanan dan bahan terlebih dahulu.');
+            }
+        });
+
+        $('#dataTersimpan').on('click', '.detail', function () {
+            var row = $(this).closest('tr');
+            var namaMakanan = row.find('td:eq(0)').text();
+            var namaBahan = row.find('td:eq(1)').text();
+            var jumlahMakanan = row.find('td:eq(2)').text();
+            var jumlahBahan = row.find('td:eq(3)').text();
+            var harga = row.find('td:eq(4)').text();
+            var detailText = '<tr><td>' + namaMakanan + '</td><td>' + namaBahan + '</td><td>' + jumlahMakanan + '</td><td>' + jumlahBahan + '</td><td>' + harga + '</td></tr>';
+            $('#detailMakananBahan').html(detailText);
+            $('#modalDetail').modal('show');
+        });
+
+        // Trigger the modal for adding a new product
+    $('.tambah-produk').click(function () {
+        $('#modalTambahProduk').modal('show');
+    });
+
+    // Trigger the modal for editing a product
+    $('#dataProduk').on('click', '.edit-produk', function () {
+        var row = $(this).closest('tr');
+        // Populate the edit modal with existing data
+        $('#editNamaProduk').val(row.find('td:eq(0)').text());
+        $('#editHarga').val(row.find('td:eq(1)').text());
+        $('#editStok').val(row.find('td:eq(2)').text());
+        $('#modalEditProduk').modal('show');
+    });
+
+// Trigger the modal for viewing ingredients
+$('#dataProduk').on('click', '.view-ingredients', function () {
+        var row = $(this).closest('tr');
+        // Retrieve and display ingredients for the selected product
+        var productName = row.find('td:eq(0)').text();
+        displayIngredients(productName);
+        $('#modalIngredients').modal('show');
+    });
+
+    // Function to display ingredients in the modal
+    function displayIngredients(productName) {
+        // Dummy ingredients data
+        var ingredientsData = {
+            'Produk 1': ['Bahan 1', 'Bahan 2'],
+            'Produk 2': ['Bahan 3', 'Bahan 4']
+            // Add more dummy data as needed
+        };
+
+        var ingredientsList = $('#ingredientsList');
+        ingredientsList.empty(); // Clear existing data
+
+        if (ingredientsData.hasOwnProperty(productName)) {
+            ingredientsData[productName].forEach(function (ingredient) {
+                var listItem = '<li class="list-group-item">' + ingredient + '</li>';
+                ingredientsList.append(listItem);
+            });
+        } else {
+            ingredientsList.append('<li class="list-group-item">No ingredients found for this product</li>');
+        }
+    }
+
+
+    // Trigger the modal for deleting a product
+    $('#dataProduk').on('click', '.delete-produk', function () {
+        $('#modalHapusProduk').modal('show');
+    });
+    });
+</script>
+</body>
+</html>
